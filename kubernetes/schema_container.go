@@ -485,13 +485,19 @@ func containerFields(isUpdatable, isInitContainer bool) map[string]*schema.Schem
 				Schema: resourcesField(),
 			},
 		},
-
 		"security_context": {
 			Type:        schema.TypeList,
 			Optional:    true,
 			MaxItems:    1,
 			Description: "Security options the pod should run with. More info: http://releases.k8s.io/HEAD/docs/design/security_context.md",
 			Elem:        securityContextSchema(),
+		},
+		"startup_probe": {
+			Type:        schema.TypeList,
+			Optional:    true,
+			MaxItems:    1,
+			Description: "Periodic probe of container startup. Container will be restarted if the probe fails. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/pod-states#container-probes",
+			Elem:        probeSchema(),
 		},
 		"stdin": {
 			Type:        schema.TypeBool,
